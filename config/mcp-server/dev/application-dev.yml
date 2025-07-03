@@ -4,8 +4,6 @@ server:
 spring:
     application:
       name: mcp-server
-    profiles:
-      active: dev
 ai:
     mcp:
       server:
