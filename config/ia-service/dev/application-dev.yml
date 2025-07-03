@@ -1,6 +1,16 @@
 server:
   port: 8001
 spring:
+  ai:
+    model:
+      chat: openai
+    openai:
+      api-key: ${GOOGLE_API_KEY}
+      base-url: https://generativelanguage.googleapis.com/v1beta/openai
+      chat:
+        completions-path: /chat/completions
+        options:
+          model: gemini-2.0-flash
     mcp:
       client:
         toolcallback:
