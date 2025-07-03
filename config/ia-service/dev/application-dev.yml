@@ -1,10 +1,11 @@
 server:
   port: 8001
+spring:
   ai:
     model:
       chat: openai
     openai:
-      api-key: ${GOOGLE_API_KEY}
+      api-key: ${GOOGLE-API-KEY}
       base-url: https://generativelanguage.googleapis.com/v1beta/openai
       chat:
         completions-path: /chat/completions
