@@ -1,0 +1,18 @@
+server:
+  port: 8081
+
+spring:
+    application:
+      name: mcp-server
+    profiles:
+      active: dev
+ai:
+    mcp:
+      server:
+        stdio: false
+        enabled: true
+        type: SYNC
+        name: mcp-server
+        version: 1.0.0
+        sse-endpoint: /sse
+        sse-message-endpoint: /mcp/messages
