@@ -1,6 +1,16 @@
 server:
   port: 8001
+  eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
 spring:
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
   ai:
     model:
       chat: openai
