@@ -6,6 +6,8 @@ server:
     register-with-eureka: true
     fetch-registry: true
 spring:
+  application:
+    name: ia-service
   cloud:
     loadbalancer:
       ribbon:
