@@ -1,10 +1,12 @@
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes: []
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+          routes: []
   config:
     enabled: false
 
