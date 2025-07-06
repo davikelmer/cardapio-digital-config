@@ -29,3 +29,33 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+    
+resilience4j:
+  ratelimiter:
+    instances:
+      ia-minute:
+        limit-for-period: 15
+        limit-refresh-period: 1m
+        timeout-duration: 0
+      ia-daily:
+        limit-for-period: 200
+        limit-refresh-period: 24h
+        timeout-duration: 0
+  circuitbreaker:
+    instances:
+      ia-service:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        wait-duration-in-open-state: 15s
+  retry:
+    instances:
+      ia-service:
+        max-attempts: 2
+        wait-duration: 1s
+  bulkhead:
+    instances:
+      ia-service:
+        max-concurrent-calls: 2
+        max-wait-duration: 0
