@@ -37,10 +37,6 @@ resilience4j:
         limit-for-period: 15
         limit-refresh-period: 1m
         timeout-duration: 0
-      ia-daily:
-        limit-for-period: 200
-        limit-refresh-period: 24h
-        timeout-duration: 0
   circuitbreaker:
     instances:
       ia-service:
