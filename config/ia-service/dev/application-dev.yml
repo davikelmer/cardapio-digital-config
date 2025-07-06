@@ -1,4 +1,4 @@
-spring:
+qspring:
   application:
     name: ia-service
   cloud:
@@ -22,7 +22,7 @@ spring:
         sse:
           connections:
             server:
-              url: "http://mcp-server"
+              url: "http://localhost:8090"
 eureka:
   instance:
     prefer-ip-address: true
