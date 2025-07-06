@@ -22,7 +22,7 @@ spring:
         sse:
           connections:
             server:
-              url: "http://localhost:8081"
+              url: "http://mcp-server"
 eureka:
   instance:
     prefer-ip-address: true
