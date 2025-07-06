@@ -1,4 +1,4 @@
-qspring:
+spring:
   application:
     name: ia-service
   cloud:
