@@ -1,6 +1,3 @@
-server:
-  port: 8081
-
 spring:
     application:
       name: mcp-server
@@ -14,3 +11,11 @@ ai:
         version: 1.0.0
         sse-endpoint: /sse
         sse-message-endpoint: /mcp/messages
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: "http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/"

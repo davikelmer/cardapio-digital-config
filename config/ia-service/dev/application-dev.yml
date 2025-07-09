@@ -22,10 +22,11 @@ spring:
         sse:
           connections:
             server:
-              url: "http://localhost:8081"
+              url: "http://localhost:8090"
 eureka:
   instance:
     prefer-ip-address: true
   client:
     register-with-eureka: true
     fetch-registry: true
+    
