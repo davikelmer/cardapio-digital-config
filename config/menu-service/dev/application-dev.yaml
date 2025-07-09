@@ -67,10 +67,6 @@ resilience4j:
         retry-exceptions:
           - java.util.concurrent.TimeoutException
           - java.net.ConnectException
-  timelimiter:
-    instances:
-      iaServiceTimeLimiter:
-        timeoutDuration: 5s
   bulkhead:
     instances:
       iaServiceBulkhead:
