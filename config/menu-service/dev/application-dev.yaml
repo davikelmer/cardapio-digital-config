@@ -1,0 +1,84 @@
+spring:
+  application:
+    name: menu-service
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+  datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:menudb
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
+
+management.health.circuitbreakers.enabled: true
+management:
+  endpoint:
+    web:
+      exposure:
+        include:"*"
+
+management.endpoint.health:
+  enabled: true
+  show-details: always
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+    instances:
+      iaServiceCircuitBreaker:
+        slidingWindowSize: 10
+        permittedNUmberOfCallsInHalfOpenState: 5
+        slidingWindowType: COUNT_BASED
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        registerHealthIndicator: true
+  retry:
+    instances:
+      iaServiceRetry:
+        maxAttempts: 5
+        waitDuration: 10s
+        intervalFunction:
+          type: exponential
+          exponential-backoff-multiplier: 2
+          max-interval: 2s
+        retry-exceptions:
+          - java.util.concurrent.TimeoutException
+          - java.net.ConnectException
+  timelimiter:
+    instances:
+      iaServiceTimeLimiter:
+        timeoutDuration: 5s
+  bulkhead:
+    instances:
+      iaServiceBulkhead:
+        maxConcurrentCalls: 2
+        maxWaitDuration: 20
+  ratelimiter:
+    instances:
+      iaServiceRateLimiter:
+        limitForPeriod: 15
+        limitRefreshPeriod: 60s
+        timeoutDuration: 0
