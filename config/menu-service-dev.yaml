@@ -29,7 +29,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
+      defaultZone: "http://server1:8761/eureka/,http://server2:8762/eureka/,http://server3:8763/eureka/"
 
 management:
   endpoints:
@@ -57,26 +57,58 @@ resilience4j:
         failureRateThreshold: 50
         waitDurationInOpenState: 10s
         registerHealthIndicator: true
+      paymentServiceCircuitBreaker:
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 100
+        permittedNumberOfCallsInHalfOpenState: 10
+        minimumNumberOfCalls: 100
+        waitDurationInOpenState: 60s
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+        registerHealthIndicator: true
   retry:
     instances:
       iaServiceRetry:
-        maxAttempts: 5
-        waitDuration: 10s
+        maxAttempts: 2
+        waitDuration: 500ms
         intervalFunction:
           type: exponential
           exponential-backoff-multiplier: 2
-          max-interval: 2s
+          max-interval: 5s
         retry-exceptions:
           - java.util.concurrent.TimeoutException
           - java.net.ConnectException
+        registerHealthIndicator: true
+      paymentServiceRetry:
+        maxAttempts: 3
+        waitDuration: 500ms
+        intervalFunction:
+          type: exponential
+          exponential-backoff-multiplier: 2
+          max-interval: 5s
+        retryExceptions:
+          - java.io.IOException
+          - java.util.concurrent.TimeoutException
+        registerHealthIndicator: true
   bulkhead:
     instances:
       iaServiceBulkhead:
-        maxConcurrentCalls: 2
-        maxWaitDuration: 20
+        maxWaitDuration: 0ms
+        maxConcurrentCalls: 10
+        registerHealthIndicator: true
+      paymentServiceBulkhead:
+        maxWaitDuration: 0ms
+        maxConcurrentCalls: 25
+        registerHealthIndicator: true
   ratelimiter:
     instances:
       iaServiceRateLimiter:
         limitForPeriod: 15
         limitRefreshPeriod: 60s
         timeoutDuration: 0
+        registerHealthIndicator: true
+      PaymentServiceRateLimiter:
+        limitForPeriod: 20
+        limitRefreshPeriod: 500ms
+        timeoutDuration: 5s
+        registerHealthIndicator: true
