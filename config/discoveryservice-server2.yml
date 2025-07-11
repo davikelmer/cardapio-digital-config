@@ -1,5 +1,3 @@
-spring:
-  profiles: server2
 eureka:
   client:
     register-with-eureka: true
