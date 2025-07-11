@@ -1,0 +1,24 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      enabled: true
+      show-details: always
+      show-components: always
+  tracing:
+    sampling:
+      probability: 1.0
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: discoveryservice
+
