@@ -11,6 +11,15 @@ ai:
         version: 1.0.0
         sse-endpoint: /sse
         sse-message-endpoint: /mcp/messages
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
 eureka:
   instance:
     prefer-ip-address: true
