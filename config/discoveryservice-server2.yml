@@ -1,9 +1,6 @@
-server:
-  port: 8762
-
 eureka:
   client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/,http://localhost:8763/eureka/
-  instance:
-    hostname: server2
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://server1:8761/eureka,http://server3:8763/eureka
