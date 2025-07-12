@@ -14,7 +14,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus,health,info
+        include: prometheus,health,info,zipkin,httptrace
   endpoint:
     health:
       show-details: always
