@@ -35,7 +35,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus,health,info,zipkin,httptrace
+        include: prometheus,health,info
   endpoint:
     health:
       show-details: always
@@ -43,9 +43,6 @@ management:
   health:
     circuitbreakers:
       enabled: true
-  #tracing:
-      #sampling:
-        #probability: 1.0
 
 resilience4j:
   circuitbreaker:

@@ -14,13 +14,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus,health,info,zipkin,httptrace
+        include: prometheus,health,info
   endpoint:
     health:
       show-details: always
-    #tracing:
-      #sampling:
-        #probability: 1.0
 eureka:
   instance:
     prefer-ip-address: true
