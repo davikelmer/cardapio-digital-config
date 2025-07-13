@@ -43,9 +43,9 @@ management:
   health:
     circuitbreakers:
       enabled: true
-  tracing:
-      sampling:
-        probability: 1.0
+  #tracing:
+      #sampling:
+        #probability: 1.0
 
 resilience4j:
   circuitbreaker:
