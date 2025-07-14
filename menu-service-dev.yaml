@@ -39,6 +39,7 @@ management:
   endpoint:
     health:
       show-details: always
+      show-components: always
       enabled: true
   health:
     circuitbreakers:

@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: payment-service
   cloud:
     loadbalancer:
       ribbon:
@@ -17,7 +15,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus,health,info
+        include: '*'
     health:
       enabled: true
       show-details: always
