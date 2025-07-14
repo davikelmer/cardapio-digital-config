@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: payment-service
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,health,info
+    health:
+      enabled: true
+      show-details: always
+      show-components: always
