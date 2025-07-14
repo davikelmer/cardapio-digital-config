@@ -8,7 +8,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: prometheus, refresh, health,info
     health:
       enabled: true
       show-details: always
