@@ -6,15 +6,6 @@ spring:
       ribbon:
         enabled: false
 
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: "http://server1:8761/eureka/,http://server2:8762/eureka/,http://server3:8763/eureka/"
-
 management:
   endpoints:
     web:
@@ -23,4 +14,11 @@ management:
     health:
       enabled: true
       show-details: always
-      show-components: always
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: "http://server1:8761/eureka/,http://server2:8762/eureka/,http://server3:8763/eureka/"
