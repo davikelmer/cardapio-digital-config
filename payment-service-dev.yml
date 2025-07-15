@@ -8,10 +8,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus, refresh, health,info
-    health:
-      enabled: true
-      show-details: always
+        include: prometheus, refresh,info
+    
 eureka:
   instance:
     prefer-ip-address: true
